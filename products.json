@@ -1,0 +1,92 @@
+[
+  {
+    "id": "CD100",
+    "name": "Citrus Day 100g",
+    "mood": "Citrus Day",
+    "type": "Soy Candle",
+    "size": "100g",
+    "price": 159,
+    "desc": "ส้มและเลมอน สดชื่นเหมือนเปิดหน้าต่างรับแดดตอนเช้า"
+  },
+  {
+    "id": "CD200",
+    "name": "Citrus Day 200g",
+    "mood": "Citrus Day",
+    "type": "Soy Candle",
+    "size": "200g",
+    "price": 259,
+    "desc": "กลิ่น citrus ที่ชัดขึ้นสำหรับห้องและพื้นที่ขนาดใหญ่"
+  },
+  {
+    "id": "LC100",
+    "name": "Lavender Calm 100g",
+    "mood": "Lavender Calm",
+    "type": "Soy Candle",
+    "size": "100g",
+    "price": 159,
+    "desc": "ลาเวนเดอร์นุ่ม ๆ สำหรับช่วงเวลาที่อยากพักจากความวุ่นวาย"
+  },
+  {
+    "id": "LC200",
+    "name": "Lavender Calm 200g",
+    "mood": "Lavender Calm",
+    "type": "Soy Candle",
+    "size": "200g",
+    "price": 259,
+    "desc": "กลิ่นผ่อนคลายที่อยู่ในห้องได้นานขึ้น"
+  },
+  {
+    "id": "CF100",
+    "name": "Coffee Focus 100g",
+    "mood": "Coffee Focus",
+    "type": "Soy Candle",
+    "size": "100g",
+    "price": 159,
+    "desc": "กาแฟคั่วหอมอบอุ่น เหมาะกับโต๊ะอ่านหนังสือและ work zone"
+  },
+  {
+    "id": "CF200",
+    "name": "Coffee Focus 200g",
+    "mood": "Coffee Focus",
+    "type": "Soy Candle",
+    "size": "200g",
+    "price": 259,
+    "desc": "coffee mood แบบเต็มขึ้นสำหรับช่วงทำงานยาว ๆ"
+  },
+  {
+    "id": "RD100",
+    "name": "Rose Date 100g",
+    "mood": "Rose Date",
+    "type": "Soy Candle",
+    "size": "100g",
+    "price": 159,
+    "desc": "กุหลาบหวานละมุน เติมบรรยากาศอบอุ่นและโรแมนติก"
+  },
+  {
+    "id": "RD200",
+    "name": "Rose Date 200g",
+    "mood": "Rose Date",
+    "type": "Soy Candle",
+    "size": "200g",
+    "price": 259,
+    "desc": "rose mood ที่นุ่มลึก เหมาะกับค่ำคืนพิเศษ"
+  },
+  {
+    "id": "WM-LC",
+    "name": "Wax Melt Lavender Calm",
+    "mood": "Lavender Calm",
+    "type": "Wax Melt",
+    "size": "—",
+    "price": 129,
+    "desc": "wax melt กลิ่น lavender สำหรับคนที่อยากเปลี่ยน mood โดยไม่ใช้ไส้เทียน"
+  },
+  {
+    "id": "WM-RD",
+    "name": "Wax Melt Rose Date",
+    "mood": "Rose Date",
+    "type": "Wax Melt",
+    "size": "—",
+    "price": 129,
+    "desc": "wax melt กลิ่น rose สำหรับค่ำคืนที่อยากให้ห้องอบอุ่นขึ้น"
+  }
+]

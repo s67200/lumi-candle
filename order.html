@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Order — LUMI</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="nav"><a class="logo" href="index.html">LUMI<span>.</span></a><nav><a href="index.html">หน้าแรก</a><a href="product.html">สินค้า</a><a class="active" href="order.html">สั่งซื้อ</a></nav></header>
+<main class="order-page">
+  <section class="page-head compact"><p class="eyebrow">ORDER FORM</p><h1>สั่งซื้อ LUMI</h1><p>กรอกข้อมูลให้ครบ แล้วกดส่งคำสั่งซื้อ</p></section>
+  <div class="order-layout">
+    <form id="orderForm" class="form-card">
+      <label>ชื่อ-นามสกุล<input required name="name" placeholder="ชื่อของคุณ"></label>
+      <label>เบอร์โทรศัพท์<input required name="phone" type="tel" placeholder="08x-xxx-xxxx"></label>
+      <label>ที่อยู่จัดส่ง<textarea required name="address" rows="4" placeholder="บ้านเลขที่ ถนน แขวง/ตำบล เขต/อำเภอ จังหวัด รหัสไปรษณีย์"></textarea></label>
+      <label>สินค้า<select required id="productSelect" name="product"></select></label>
+      <label>จำนวน<input required name="quantity" type="number" min="1" value="1"></label>
+      <label>หมายเหตุ<textarea name="note" rows="3" placeholder="เช่น ฝากไว้หน้าบ้าน"></textarea></label>
+      <button class="btn dark full" type="submit">ยืนยันคำสั่งซื้อ →</button>
+      <p class="form-note">* เดโมนี้บันทึกคำสั่งซื้อไว้ในเครื่องก่อน หากต้องการต่อ Google Sheet ให้ใส่ Apps Script URL ใน script.js</p>
+    </form>
+    <aside class="order-summary"><p class="eyebrow">YOUR ORDER</p><div id="summary">ยังไม่ได้เลือกสินค้า</div></aside>
+  </div>
+</main>
+<footer><span>© 2026 LUMI.</span><span>Scent your moment.</span></footer>
+<script src="script.js"></script>
+</body>
+</html>

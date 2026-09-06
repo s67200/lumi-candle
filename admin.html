@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — LUMI</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="nav"><a class="logo" href="index.html">LUMI<span>.</span></a><nav><a href="index.html">หน้าแรก</a><a href="product.html">สินค้า</a><a href="order.html">สั่งซื้อ</a></nav><span class="admin-tag">ADMIN</span></header>
+<main class="admin-page">
+  <section class="page-head compact"><p class="eyebrow">ORDER MANAGEMENT</p><h1>รายการคำสั่งซื้อ</h1><p>ข้อมูลเดโมจากเครื่องนี้</p></section>
+  <div class="admin-actions"><button class="filter active" id="refreshOrders">รีเฟรช</button><button class="filter" id="clearOrders">ล้างข้อมูลเดโม</button></div>
+  <div class="table-wrap"><table><thead><tr><th>เวลา</th><th>ลูกค้า</th><th>สินค้า</th><th>จำนวน</th><th>เบอร์</th><th>ที่อยู่</th></tr></thead><tbody id="ordersBody"></tbody></table></div>
+</main>
+<footer><span>© 2026 LUMI.</span><span>Admin panel</span></footer>
+<script src="script.js"></script>
+</body>
+</html>
