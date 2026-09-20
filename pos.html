@@ -4,31 +4,39 @@
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>POS — LUMI</title><link rel="stylesheet" href="style.css">
 <style>
-.pos-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:22px}.pos-box{background:#fff;border:1px solid #e3ddd5;border-radius:16px;padding:22px}.pos-box h2{margin-top:0}.pos-row{display:grid;grid-template-columns:1fr 100px auto;gap:10px;align-items:end;margin-bottom:14px}.pos-row label{display:block;font-size:13px;margin-bottom:6px}.pos-row input,.pos-row select{width:100%;padding:11px;border:1px solid #cfc5b9;border-radius:8px}.pos-total{font-size:28px;font-weight:800;margin:18px 0}.stock-list{display:grid;gap:10px}.stock-item{display:flex;justify-content:space-between;border-bottom:1px solid #eee5db;padding:10px 0}.small{font-size:13px;color:#777}.sale-list{margin-top:18px}.sale{padding:12px 0;border-bottom:1px solid #eee5db}@media(max-width:700px){.pos-grid{grid-template-columns:1fr}.pos-row{grid-template-columns:1fr 90px}.pos-row button{grid-column:1/-1}}
+.pos-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:22px}.pos-box{background:#fff;border:1px solid #e3ddd5;border-radius:16px;padding:22px}.pos-box h2{margin-top:0}.pos-row{display:grid;grid-template-columns:1fr 110px auto;gap:10px;align-items:end;margin-bottom:14px}.pos-row label{display:block;font-size:13px;margin-bottom:6px}.pos-row input,.pos-row select{width:100%;padding:11px;border:1px solid #cfc5b9;border-radius:8px;background:#fff}.pos-total{font-size:28px;font-weight:800;margin:18px 0}.stock-list{display:grid;gap:10px}.stock-item{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #eee5db;padding:10px 0}.small{font-size:13px;color:#777}.sale{padding:12px 0;border-bottom:1px solid #eee5db}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}.stat{background:#f6f1e9;border-radius:12px;padding:14px}.stat b{display:block;font-size:22px;margin-top:4px}.danger{border:1px solid #c98d83!important;color:#8b3d32!important;background:#fff!important}.notice{padding:12px 14px;background:#fff3cf;border-radius:10px;margin:14px 0}.order-mini{padding:10px 0;border-bottom:1px solid #eee5db}.order-mini:last-child{border-bottom:0}@media(max-width:700px){.pos-grid{grid-template-columns:1fr}.pos-row{grid-template-columns:1fr 90px}.pos-row button{grid-column:1/-1}.stats{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<header class="nav"><a class="logo" href="index.html">LUMI<span>.</span></a><nav><a href="index.html">หน้าแรก</a><a href="product.html">สินค้า</a><a href="order.html">สั่งซื้อ</a><a class="active" href="pos.html">POS</a></nav><span class="admin-tag">STAFF</span></header>
+<header class="nav"><a class="logo" href="index.html">LUMI<span>.</span></a><nav><a href="index.html">หน้าแรก</a><a href="product.html">สินค้า</a><a href="order.html">สั่งซื้อ</a><a class="active" href="pos.html">POS</a></nav><a class="nav-btn" href="admin.html">คำสั่งซื้อ →</a></header>
 <main class="admin-page">
-<section class="page-head compact"><p class="eyebrow">LUMI STORE MANAGEMENT</p><h1>ระบบขายสินค้า POS</h1><p>จัดการสต๊อกและบันทึกการขายต่อเนื่องจากเว็บไซต์ LUMI เดิม</p></section>
+<section class="page-head compact"><p class="eyebrow">LUMI STORE MANAGEMENT · WEEK 8</p><h1>ระบบขายสินค้า POS</h1><p>ต่อเนื่องจากเว็บไซต์ LUMI เดิม ใช้ข้อมูลสินค้าเดียวกันและเก็บข้อมูลเดโมไว้ในเครื่อง</p></section>
 <div id="notice" class="notice" style="display:none"></div>
+<section class="stats"><div class="stat"><span class="small">ยอดขายสะสม</span><b id="grand">0 บาท</b></div><div class="stat"><span class="small">จำนวนชิ้นที่ขาย</span><b id="soldCount">0</b></div><div class="stat"><span class="small">รายการขาย</span><b id="saleCount">0</b></div></section>
 <section class="pos-grid">
-<div class="pos-box"><h2>ขายสินค้า</h2><div class="pos-row"><div><label>เลือกสินค้า</label><select id="product"></select></div><div><label>จำนวน</label><input id="qty" type="number" min="1" value="1"></div><button id="sell">ขายสินค้า</button></div><div class="pos-total">ยอดรวม <span id="total">0 บาท</span></div><p class="small">เมื่อกดขาย ระบบจะตัดสต๊อกและบันทึกประวัติไว้ในเครื่องนี้</p></div>
-<div class="pos-box"><h2>สรุปยอดขาย</h2><div class="pos-total" id="grand">0 บาท</div><p class="small">ยอดขายสะสมจากรายการที่บันทึก</p><button class="filter" id="reset">รีเซ็ตข้อมูลเดโม</button></div>
+<div class="pos-box"><h2>ขายสินค้า</h2><div class="pos-row"><div><label>เลือกสินค้า</label><select id="product"></select></div><div><label>จำนวน</label><input id="qty" type="number" min="1" value="1"></div><button id="sell">ยืนยันการขาย</button></div><div class="pos-total">ยอดรวม <span id="total">0 บาท</span></div><p class="small">เมื่อยืนยัน ระบบจะตัดสต๊อกและบันทึกประวัติการขายใน localStorage</p></div>
+<div class="pos-box"><h2>การจัดการข้อมูล</h2><p class="small">ข้อมูลในหน้านี้เป็นข้อมูลเดโมของเว็บไซต์สำหรับงานเรียน สามารถรีเซ็ตกลับเป็นสต๊อกเริ่มต้นได้</p><button class="filter danger" id="reset">รีเซ็ตข้อมูล POS</button></div>
 </section>
 <section class="pos-box" style="margin-top:22px"><h2>สต๊อกสินค้า</h2><div id="stock" class="stock-list"></div></section>
-<section class="pos-box sale-list"><h2>ประวัติการขาย</h2><div id="sales"></div></section>
+<section class="pos-box" style="margin-top:22px"><h2>ประวัติการขาย</h2><div id="sales"></div></section>
+<section class="pos-box" style="margin-top:22px"><h2>คำสั่งซื้อจากหน้าเว็บ</h2><div id="orders"></div></section>
 </main><footer><span>© 2026 LUMI.</span><span>Mini POS</span></footer>
 <script>
 let products=[];let stock=JSON.parse(localStorage.getItem('lumiStock')||'null');let sales=JSON.parse(localStorage.getItem('lumiSales')||'[]');
 const $=id=>document.getElementById(id);const money=n=>new Intl.NumberFormat('th-TH').format(n)+' บาท';
-function notify(t){$('notice').textContent=t;$('notice').style.display='block'}
+function notify(t){$('notice').textContent=t;$('notice').style.display='block';setTimeout(()=>$('notice').style.display='none',2500)}
 async function init(){products=await (await fetch('products.json')).json();if(!stock){stock={};products.forEach(p=>stock[p.id]=20);save()}render()}
 function save(){localStorage.setItem('lumiStock',JSON.stringify(stock));localStorage.setItem('lumiSales',JSON.stringify(sales))}
-function render(){const select=$('product');select.innerHTML=products.map(p=>`<option value="${p.id}" ${stock[p.id]===0?'disabled':''}>${p.name} — คงเหลือ ${stock[p.id]} ชิ้น</option>`).join('');updateTotal();$('stock').innerHTML=products.map(p=>`<div class="stock-item"><span>${p.name}<br><span class="small">${p.id}</span></span><strong>${stock[p.id]} ชิ้น</strong></div>`).join('');$('grand').textContent=money(sales.reduce((s,x)=>s+x.total,0));$('sales').innerHTML=sales.length?sales.slice().reverse().map(s=>`<div class="sale"><strong>${s.product}</strong> × ${s.qty} = ${money(s.total)}<br><span class="small">${s.time}</span></div>`).join(''):'<p class="small">ยังไม่มีรายการขาย</p>'}
+function render(){
+ const select=$('product');select.innerHTML=products.map(p=>`<option value="${p.id}" ${stock[p.id]===0?'disabled':''}>${p.name} — คงเหลือ ${stock[p.id]} ชิ้น</option>`).join('');
+ updateTotal();$('stock').innerHTML=products.map(p=>`<div class="stock-item"><span>${p.name}<br><span class="small">${p.id} · ${p.type} ${p.size}</span></span><strong>${stock[p.id]} ชิ้น</strong></div>`).join('');
+ const total=sales.reduce((s,x)=>s+x.total,0), count=sales.reduce((s,x)=>s+x.qty,0);$('grand').textContent=money(total);$('soldCount').textContent=count;$('saleCount').textContent=sales.length;
+ $('sales').innerHTML=sales.length?sales.slice().reverse().map(s=>`<div class="sale"><strong>${s.product}</strong> × ${s.qty} = ${money(s.total)}<br><span class="small">${s.time}</span></div>`).join(''):'<p class="small">ยังไม่มีรายการขาย</p>';
+ const orders=JSON.parse(localStorage.getItem('lumiOrders')||'[]');$('orders').innerHTML=orders.length?orders.slice().reverse().map(o=>`<div class="order-mini"><strong>${o.id}</strong> · ${o.product} × ${o.quantity}<br><span class="small">${o.name} · ${o.createdAt}</span></div>`).join(''):'<p class="small">ยังไม่มีคำสั่งซื้อจากหน้าเว็บ</p>';
+}
 function updateTotal(){const p=products.find(x=>x.id===$('product').value);$('total').textContent=p?money(p.price*Number($('qty').value||1)):'0 บาท'}
 $('product').onchange=updateTotal;$('qty').oninput=updateTotal;
 $('sell').onclick=()=>{const p=products.find(x=>x.id===$('product').value),q=Number($('qty').value);if(!p||q<1)return;if(q>stock[p.id]){notify('สต๊อกสินค้าไม่เพียงพอ');return}stock[p.id]-=q;sales.push({product:p.name,qty:q,total:p.price*q,time:new Date().toLocaleString('th-TH')});save();notify('บันทึกการขายและตัดสต๊อกเรียบร้อยแล้ว');render()};
-$('reset').onclick=()=>{if(confirm('ต้องการรีเซ็ตข้อมูลเดโมทั้งหมดหรือไม่?')){stock=null;sales=[];localStorage.removeItem('lumiStock');localStorage.removeItem('lumiSales');init()}};init();
+$('reset').onclick=()=>{if(confirm('ต้องการรีเซ็ตข้อมูล POS ทั้งหมดหรือไม่?')){stock={};products.forEach(p=>stock[p.id]=20);sales=[];save();render();notify('รีเซ็ตข้อมูลเรียบร้อยแล้ว')}};init();
 </script>
 </body></html>
