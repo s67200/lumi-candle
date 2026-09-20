@@ -36,7 +36,67 @@ function render(){
 }
 function updateTotal(){const p=products.find(x=>x.id===$('product').value);$('total').textContent=p?money(p.price*Number($('qty').value||1)):'0 บาท'}
 $('product').onchange=updateTotal;$('qty').oninput=updateTotal;
-$('sell').onclick=()=>{const p=products.find(x=>x.id===$('product').value),q=Number($('qty').value);if(!p||q<1)return;if(q>stock[p.id]){notify('สต๊อกสินค้าไม่เพียงพอ');return}stock[p.id]-=q;sales.push({product:p.name,qty:q,total:p.price*q,time:new Date().toLocaleString('th-TH')});save();notify('บันทึกการขายและตัดสต๊อกเรียบร้อยแล้ว');render()};
+$('sell').onclick=async()=>{
+  const p=products.find(x=>x.id===$('product').value);
+  const q=Number($('qty').value);
+
+  if(!p||q<1)return;
+
+  if(q>stock[p.id]){
+    notify('สต๊อกสินค้าไม่เพียงพอ');
+    return;
+  }
+
+  const total=p.price*q;
+  const time=new Date().toLocaleString('th-TH');
+
+  // ตัดสต๊อก
+  stock[p.id]-=q;
+
+  // บันทึกประวัติการขาย
+  sales.push({
+    product:p.name,
+    qty:q,
+    total:total,
+    time:time
+  });
+
+  save();
+  render();
+
+  // ส่งแจ้งเตือน Telegram
+  try{
+    const response=await fetch('/api/telegram',{
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({
+        message:
+`🛍️ LUMI — มีรายการขายใหม่
+
+สินค้า: ${p.name}
+จำนวน: ${q} ชิ้น
+ยอดขาย: ${money(total)}
+เวลา: ${time}
+
+สต๊อกคงเหลือ: ${stock[p.id]} ชิ้น`
+      })
+    });
+
+    if(!response.ok){
+      throw new Error('Telegram API error');
+    }
+
+    notify('ขายสำเร็จ และส่งแจ้งเตือน Telegram แล้ว');
+
+  }catch(error){
+
+    console.error(error);
+
+    notify('ขายสำเร็จ แต่ส่ง Telegram ไม่สำเร็จ');
+  }
+};
 $('reset').onclick=()=>{if(confirm('ต้องการรีเซ็ตข้อมูล POS ทั้งหมดหรือไม่?')){stock={};products.forEach(p=>stock[p.id]=20);sales=[];save();render();notify('รีเซ็ตข้อมูลเรียบร้อยแล้ว')}};init();
 </script>
 </body></html>
