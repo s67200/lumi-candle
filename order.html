@@ -481,6 +481,47 @@ ${note || "-"}
 
           }
 
+/* =========================
+   SAVE ORDER
+========================= */
+
+const orders =
+  JSON.parse(
+    localStorage.getItem("lumiOrders") || "[]"
+  );
+
+orders.push({
+  id: "LUMI-" + Date.now(),
+
+  name: name,
+
+  phone: phone,
+
+  address: address,
+
+  note: note || "-",
+
+  product: cart
+    .map(item => item.name)
+    .join(", "),
+
+  quantity: cart
+    .reduce(
+      (total, item) =>
+        total + Number(item.quantity || 0),
+      0
+    ),
+
+  total: grandTotal,
+
+  createdAt:
+    new Date().toLocaleString("th-TH")
+});
+
+localStorage.setItem(
+  "lumiOrders",
+  JSON.stringify(orders)
+);          
 
           /* =========================
              CLEAR CART
