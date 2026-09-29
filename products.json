@@ -6,16 +6,31 @@
     "type": "Soy Candle",
     "size": "100g",
     "price": 159,
-    "desc": "ส้มและเลมอน สดชื่นเหมือนเปิดหน้าต่างรับแดดตอนเช้า"
+    "desc": "ส้ม เลมอน และเกรปฟรุต สดชื่นเหมือนเปิดหน้าต่างรับแดดยามเช้า",
+    "image": "citrus.jpg",
+    "color": "#FFD86B"
   },
   {
-    "id": "CD200",
-    "name": "Citrus Day 200g",
-    "mood": "Citrus Day",
+    "id": "VC100",
+    "name": "Vanilla Cloud 100g",
+    "mood": "Vanilla Cloud",
     "type": "Soy Candle",
-    "size": "200g",
-    "price": 259,
-    "desc": "กลิ่น citrus ที่ชัดขึ้นสำหรับห้องและพื้นที่ขนาดใหญ่"
+    "size": "100g",
+    "price": 159,
+    "desc": "วานิลลา มะพร้าว และมัสก์ หอมหวานนุ่มละมุน",
+    "image": "vanilla.jpg",
+    "color": "#F3E2C3"
+  },
+  {
+    "id": "RB100",
+    "name": "Rose Bloom 100g",
+    "mood": "Rose Bloom",
+    "type": "Soy Candle",
+    "size": "100g",
+    "price": 159,
+    "desc": "กุหลาบ พีโอนี และไวท์มัสก์ ให้บรรยากาศหวานละมุน",
+    "image": "rose.jpg",
+    "color": "#F4A6B8"
   },
   {
     "id": "LC100",
@@ -24,16 +39,31 @@
     "type": "Soy Candle",
     "size": "100g",
     "price": 159,
-    "desc": "ลาเวนเดอร์นุ่ม ๆ สำหรับช่วงเวลาที่อยากพักจากความวุ่นวาย"
+    "desc": "ลาเวนเดอร์ คาโมมายล์ และซีดาร์วูด เหมาะสำหรับช่วงเวลาพักผ่อน",
+    "image": "lavender.jpg",
+    "color": "#B9A1E8"
   },
   {
-    "id": "LC200",
-    "name": "Lavender Calm 200g",
-    "mood": "Lavender Calm",
+    "id": "OB100",
+    "name": "Ocean Breeze 100g",
+    "mood": "Ocean Breeze",
     "type": "Soy Candle",
-    "size": "200g",
-    "price": 259,
-    "desc": "กลิ่นผ่อนคลายที่อยู่ในห้องได้นานขึ้น"
+    "size": "100g",
+    "price": 159,
+    "desc": "กลิ่นทะเล เกลือทะเล และดอกมะลิ ให้ความรู้สึกสดชื่นเหมือนอยู่ริมทะเล",
+    "image": "ocean.jpg",
+    "color": "#91D8EA"
+  },
+  {
+    "id": "FD100",
+    "name": "Forest Dream 100g",
+    "mood": "Forest Dream",
+    "type": "Soy Candle",
+    "size": "100g",
+    "price": 159,
+    "desc": "สน ยูคาลิปตัส และแซนดัลวูด ให้ความรู้สึกสงบและใกล้ชิดธรรมชาติ",
+    "image": "forest.jpg",
+    "color": "#91B98A"
   },
   {
     "id": "CF100",
@@ -42,16 +72,9 @@
     "type": "Soy Candle",
     "size": "100g",
     "price": 159,
-    "desc": "กาแฟคั่วหอมอบอุ่น เหมาะกับโต๊ะอ่านหนังสือและ work zone"
-  },
-  {
-    "id": "CF200",
-    "name": "Coffee Focus 200g",
-    "mood": "Coffee Focus",
-    "type": "Soy Candle",
-    "size": "200g",
-    "price": 259,
-    "desc": "coffee mood แบบเต็มขึ้นสำหรับช่วงทำงานยาว ๆ"
+    "desc": "กาแฟคั่วหอมอบอุ่น เหมาะกับโต๊ะอ่านหนังสือและ work zone",
+    "image": "",
+    "color": "#B9825B"
   },
   {
     "id": "RD100",
@@ -60,33 +83,41 @@
     "type": "Soy Candle",
     "size": "100g",
     "price": 159,
-    "desc": "กุหลาบหวานละมุน เติมบรรยากาศอบอุ่นและโรแมนติก"
+    "desc": "กลิ่นกุหลาบหวานนุ่ม ให้บรรยากาศอบอุ่นและโรแมนติก",
+    "image": "",
+    "color": "#D97891"
   },
   {
-    "id": "RD200",
-    "name": "Rose Date 200g",
-    "mood": "Rose Date",
+    "id": "PG100",
+    "name": "Peach Glow 100g",
+    "mood": "Peach Glow",
     "type": "Soy Candle",
-    "size": "200g",
-    "price": 259,
-    "desc": "rose mood ที่นุ่มลึก เหมาะกับค่ำคืนพิเศษ"
+    "size": "100g",
+    "price": 159,
+    "desc": "พีชหวานฉ่ำ ผสมกลิ่นผลไม้สดใส ให้ความรู้สึกสดชื่นและน่ารัก",
+    "image": "",
+    "color": "#F6B28B"
   },
   {
-    "id": "WM-LC",
-    "name": "Wax Melt Lavender Calm",
-    "mood": "Lavender Calm",
-    "type": "Wax Melt",
-    "size": "—",
-    "price": 129,
-    "desc": "wax melt กลิ่น lavender สำหรับคนที่อยากเปลี่ยน mood โดยไม่ใช้ไส้เทียน"
+    "id": "SD100",
+    "name": "Sakura Dream 100g",
+    "mood": "Sakura Dream",
+    "type": "Soy Candle",
+    "size": "100g",
+    "price": 159,
+    "desc": "ซากุระและดอกไม้สีขาว หอมละมุน ให้บรรยากาศอ่อนโยน",
+    "image": "",
+    "color": "#F3B6C7"
   },
   {
-    "id": "WM-RD",
-    "name": "Wax Melt Rose Date",
-    "mood": "Rose Date",
-    "type": "Wax Melt",
-    "size": "—",
-    "price": 129,
-    "desc": "wax melt กลิ่น rose สำหรับค่ำคืนที่อยากให้ห้องอบอุ่นขึ้น"
+    "id": "MG100",
+    "name": "Matcha Garden 100g",
+    "mood": "Matcha Garden",
+    "type": "Soy Candle",
+    "size": "100g",
+    "price": 159,
+    "desc": "มัทฉะ ใบชา และกลิ่นไม้บาง ๆ ให้ความรู้สึกสงบและสดชื่น",
+    "image": "",
+    "color": "#A8C98C"
   }
 ]
