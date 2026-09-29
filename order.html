@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="th">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,408 +11,416 @@
 
 <body>
 
-  <!-- NAV -->
-  <header class="nav">
+<header class="nav">
 
-    <a class="logo" href="index.html">
-      LUMI<span>.</span>
+  <a class="logo" href="index.html">
+    LUMI<span>.</span>
+  </a>
+
+  <nav>
+    <a href="index.html">หน้าแรก</a>
+    <a href="product.html">สินค้า</a>
+    <a class="active" href="order.html">สั่งซื้อ</a>
+
+    <a href="cart.html">
+      ตะกร้า
+      <span class="cart-count">0</span>
     </a>
 
-    <nav>
-      <a href="index.html">หน้าแรก</a>
-      <a href="product.html">สินค้า</a>
-      <a class="active" href="order.html">สั่งซื้อ</a>
-      <a href="cart.html">
-  ตะกร้า
-  <span class="cart-count">0</span>
-</a>
-      <a href="pos.html">POS</a>
-    </nav>
+    <a href="pos.html">POS</a>
+  </nav>
 
-  </header>
+</header>
 
 
-  <!-- ORDER -->
-  <main class="order-page">
+<main class="order-page">
 
-    <section class="page-head compact">
+  <section class="page-head compact">
 
-      <p class="eyebrow">
-        ORDER FORM
-      </p>
+    <p class="eyebrow">ORDER FORM</p>
 
-      <h1>
-        สั่งซื้อ LUMI
-      </h1>
+    <h1>สั่งซื้อ LUMI</h1>
 
-      <p>
-        เลือกกลิ่นที่ต้องการ แล้วกรอกข้อมูลสำหรับจัดส่ง
-      </p>
+    <p>
+      ตรวจสอบสินค้าในตะกร้า แล้วกรอกข้อมูลสำหรับจัดส่ง
+    </p>
 
-    </section>
+  </section>
 
 
-    <div class="order-layout">
-
-      <!-- FORM -->
-
-      <form id="orderForm" class="form-card">
-
-        <label>
-          ชื่อ-นามสกุล
-
-          <input
-            required
-            name="name"
-            placeholder="ชื่อของคุณ"
-          >
-
-        </label>
+  <div class="order-layout">
 
 
-        <label>
-          เบอร์โทรศัพท์
+    <!-- =========================
+         FORM
+    ========================== -->
 
-          <input
-            required
-            name="phone"
-            type="tel"
-            placeholder="08x-xxx-xxxx"
-          >
+    <form id="orderForm" class="form-card">
 
-        </label>
-
-
-        <label>
-          ที่อยู่จัดส่ง
-
-          <textarea
-            required
-            name="address"
-            rows="4"
-            placeholder="บ้านเลขที่ ถนน แขวง/ตำบล เขต/อำเภอ จังหวัด รหัสไปรษณีย์"
-          ></textarea>
-
-        </label>
-
-
-        <!-- PRODUCT -->
-
-        <label>
-          สินค้า
-
-          <select
-            required
-            id="productSelect"
-            name="product"
-          >
-
-            <option value="">
-              กำลังโหลดสินค้า...
-            </option>
-
-          </select>
-
-        </label>
-
-
-        <!-- QUANTITY -->
-
-        <label>
-          จำนวน
-
-          <input
-            required
-            name="quantity"
-            type="number"
-            min="1"
-            value="1"
-          >
-
-        </label>
-
-
-        <!-- NOTE -->
-
-        <label>
-          หมายเหตุ
-
-          <textarea
-            name="note"
-            rows="3"
-            placeholder="เช่น ฝากไว้หน้าบ้าน"
-          ></textarea>
-
-        </label>
-
-
-        <button
-          class="btn dark full"
-          type="submit"
+      <label>
+        ชื่อ-นามสกุล
+        <input
+          required
+          name="name"
+          placeholder="ชื่อของคุณ"
         >
-          ยืนยันคำสั่งซื้อ →
-        </button>
+      </label>
 
 
-        <p class="form-note">
-          * เมื่อกดยืนยัน ร้านจะได้รับข้อมูลคำสั่งซื้อผ่าน Telegram
-        </p>
+      <label>
+        เบอร์โทรศัพท์
+        <input
+          required
+          name="phone"
+          type="tel"
+          placeholder="08x-xxx-xxxx"
+        >
+      </label>
 
-      </form>
+
+      <label>
+        ที่อยู่จัดส่ง
+
+        <textarea
+          required
+          name="address"
+          rows="4"
+          placeholder="บ้านเลขที่ ถนน แขวง/ตำบล เขต/อำเภอ จังหวัด รหัสไปรษณีย์"
+        ></textarea>
+
+      </label>
 
 
-      <!-- SUMMARY -->
+      <!-- สินค้าจากตะกร้าจะมาแสดงตรงนี้ -->
 
-      <aside class="order-summary">
+      <div>
 
-        <p class="eyebrow">
-          YOUR ORDER
-        </p>
+        <label>
+          สินค้าในตะกร้า
+        </label>
 
-        <div id="summary">
-          ยังไม่ได้เลือกสินค้า
+        <div
+          id="cartItems"
+          style="
+            border:1px solid #ddd;
+            border-radius:12px;
+            padding:15px;
+            margin-top:8px;
+          "
+        >
+          กำลังโหลดสินค้า...
         </div>
 
-      </aside>
+      </div>
+
+
+      <label>
+        หมายเหตุ
+
+        <textarea
+          name="note"
+          rows="3"
+          placeholder="เช่น ฝากไว้หน้าบ้าน"
+        ></textarea>
+
+      </label>
+
+
+      <button
+        class="btn dark full"
+        type="submit"
+      >
+        ยืนยันคำสั่งซื้อ →
+      </button>
+
+
+      <p class="form-note">
+        * ระบบจะส่งรายละเอียดคำสั่งซื้อไปยังร้านค้า
+      </p>
+
+    </form>
+
+
+    <!-- =========================
+         SUMMARY
+    ========================== -->
+
+    <aside class="order-summary">
+
+      <p class="eyebrow">
+        YOUR ORDER
+      </p>
+
+      <div id="summary">
+        กำลังโหลด...
+      </div>
+
+    </aside>
+
+  </div>
+
+</main>
+
+
+<footer>
+
+  <span>
+    © 2026 LUMI.
+  </span>
+
+  <span>
+    Scent your moment.
+  </span>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  /* =========================
+     GET CART
+  ========================== */
+
+  const cart =
+    JSON.parse(
+      localStorage.getItem("lumi_cart") || "[]"
+    );
+
+
+  const cartItems =
+    document.getElementById("cartItems");
+
+  const summary =
+    document.getElementById("summary");
+
+
+  /* =========================
+     CART COUNT
+  ========================== */
+
+  const totalItems =
+    cart.reduce(
+      (total, item) =>
+        total + Number(item.quantity || 0),
+      0
+    );
+
+
+  document
+    .querySelectorAll(".cart-count")
+    .forEach(el => {
+      el.textContent = totalItems;
+    });
+
+
+  /* =========================
+     EMPTY CART
+  ========================== */
+
+  if (!cart.length) {
+
+    cartItems.innerHTML = `
+      <p>
+        ยังไม่มีสินค้าในตะกร้า
+      </p>
+
+      <a href="product.html">
+        ← ไปเลือกสินค้า
+      </a>
+    `;
+
+    summary.innerHTML = `
+      <p>
+        ยังไม่มีสินค้า
+      </p>
+    `;
+
+    return;
+  }
+
+
+  /* =========================
+     SHOW CART ITEMS
+  ========================== */
+
+  cartItems.innerHTML = cart.map(item => {
+
+    const quantity =
+      Number(item.quantity || 1);
+
+    const price =
+      Number(item.price || 0);
+
+    const total =
+      price * quantity;
+
+    return `
+
+      <div
+        style="
+          display:flex;
+          justify-content:space-between;
+          align-items:center;
+          gap:10px;
+          padding:10px 0;
+          border-bottom:1px solid #eee;
+        "
+      >
+
+        <div>
+
+          <strong>
+            ${item.name}
+          </strong>
+
+          <div>
+            ${quantity} ชิ้น
+          </div>
+
+        </div>
+
+        <strong>
+          ${total.toLocaleString("th-TH")} บาท
+        </strong>
+
+      </div>
+
+    `;
+
+  }).join("");
+
+
+  /* =========================
+     ORDER SUMMARY
+  ========================== */
+
+  const grandTotal =
+    cart.reduce(
+      (total, item) =>
+        total +
+        Number(item.price || 0) *
+        Number(item.quantity || 1),
+      0
+    );
+
+
+  summary.innerHTML = `
+
+    ${cart.map(item => `
+
+      <div
+        style="
+          display:flex;
+          justify-content:space-between;
+          padding:8px 0;
+        "
+      >
+
+        <span>
+          ${item.name} × ${item.quantity}
+        </span>
+
+        <strong>
+          ${(
+            Number(item.price || 0) *
+            Number(item.quantity || 1)
+          ).toLocaleString("th-TH")} ฿
+        </strong>
+
+      </div>
+
+    `).join("")}
+
+
+    <hr>
+
+    <div
+      style="
+        display:flex;
+        justify-content:space-between;
+        font-size:18px;
+        margin-top:12px;
+      "
+    >
+
+      <strong>
+        รวมทั้งหมด
+      </strong>
+
+      <strong>
+        ${grandTotal.toLocaleString("th-TH")} ฿
+      </strong>
 
     </div>
 
-  </main>
+  `;
 
 
-  <!-- FOOTER -->
+  /* =========================
+     SUBMIT ORDER
+  ========================== */
 
-  <footer>
+  document
+    .getElementById("orderForm")
+    .addEventListener(
+      "submit",
+      async function (e) {
 
-    <span>
-      © 2026 LUMI.
-    </span>
+        e.preventDefault();
 
-    <span>
-      Scent your moment.
-    </span>
 
-  </footer>
+        const form =
+          e.target;
 
+        const formData =
+          new FormData(form);
 
-  <!-- =========================
-       ORDER SCRIPT
-  ========================== -->
 
-  <script>
+        const name =
+          formData.get("name");
 
-    let PRODUCTS = [];
+        const phone =
+          formData.get("phone");
 
-    const productSelect =
-      document.getElementById("productSelect");
+        const address =
+          formData.get("address");
 
-    const summary =
-      document.getElementById("summary");
+        const note =
+          formData.get("note");
 
-    const quantityInput =
-      document.querySelector('[name="quantity"]');
 
+        /* =========================
+           PRODUCT MESSAGE
+        ========================== */
 
-    /* =========================
-       LOAD PRODUCTS
-    ========================= */
+        const productMessage =
+          cart.map(item => {
 
-    async function loadProducts() {
+            const total =
+              Number(item.price || 0) *
+              Number(item.quantity || 1);
 
-      try {
+            return `
+📦 ${item.name}
+จำนวน: ${item.quantity}
+ราคา: ${total.toLocaleString("th-TH")} บาท
+`;
 
-        const response =
-          await fetch("products.json");
+          }).join("\n");
 
-        if (!response.ok) {
-          throw new Error("โหลด products.json ไม่สำเร็จ");
-        }
 
-        PRODUCTS =
-          await response.json();
+        /* =========================
+           TELEGRAM MESSAGE
+        ========================== */
 
+        const message = `
 
-        productSelect.innerHTML = `
-          <option value="">
-            -- เลือกกลิ่นที่ต้องการ --
-          </option>
-        `;
-
-
-        PRODUCTS.forEach(product => {
-
-          const option =
-            document.createElement("option");
-
-          option.value =
-            product.id;
-
-          option.textContent =
-            `${product.name} — ${product.price} บาท`;
-
-          productSelect.appendChild(option);
-
-        });
-
-
-      } catch (error) {
-
-        console.error(error);
-
-        productSelect.innerHTML = `
-          <option value="">
-            ไม่สามารถโหลดสินค้าได้
-          </option>
-        `;
-
-        alert(
-          "โหลดรายการสินค้าไม่สำเร็จ กรุณารีเฟรชหน้าเว็บ"
-        );
-
-      }
-
-    }
-
-
-    /* =========================
-       UPDATE SUMMARY
-    ========================= */
-
-    function updateSummary() {
-
-      const selectedID =
-        productSelect.value;
-
-      const quantity =
-        Number(quantityInput.value || 1);
-
-
-      if (!selectedID) {
-
-        summary.innerHTML =
-          "ยังไม่ได้เลือกสินค้า";
-
-        return;
-
-      }
-
-
-      const product =
-        PRODUCTS.find(
-          p => p.id === selectedID
-        );
-
-
-      if (!product) return;
-
-
-      const total =
-        product.price * quantity;
-
-
-      summary.innerHTML = `
-
-        <div class="summary-item">
-
-          <strong>
-            ${product.name}
-          </strong>
-
-          <span>
-            ${product.desc || ""}
-          </span>
-
-          <p>
-            จำนวน ${quantity} ชิ้น
-          </p>
-
-          <strong>
-            รวม ${total.toLocaleString("th-TH")} บาท
-          </strong>
-
-        </div>
-
-      `;
-
-    }
-
-
-    productSelect.addEventListener(
-      "change",
-      updateSummary
-    );
-
-
-    quantityInput.addEventListener(
-      "input",
-      updateSummary
-    );
-
-
-    /* =========================
-       SEND ORDER
-    ========================= */
-
-    document
-      .getElementById("orderForm")
-      .addEventListener(
-        "submit",
-        async function (e) {
-
-          e.preventDefault();
-
-
-          const form =
-            e.target;
-
-          const formData =
-            new FormData(form);
-
-
-          const name =
-            formData.get("name");
-
-          const phone =
-            formData.get("phone");
-
-          const address =
-            formData.get("address");
-
-          const productID =
-            formData.get("product");
-
-          const quantity =
-            formData.get("quantity");
-
-          const note =
-            formData.get("note");
-
-
-          const product =
-            PRODUCTS.find(
-              p => p.id === productID
-            );
-
-
-          if (!product) {
-
-            alert(
-              "กรุณาเลือกสินค้าก่อน"
-            );
-
-            return;
-
-          }
-
-
-          const total =
-            product.price *
-            Number(quantity);
-
-
-          const message = `
-
-🕯️ คำสั่งซื้อใหม่จาก LUMI
+🕯️ มีคำสั่งซื้อใหม่จาก LUMI
 
 👤 ชื่อลูกค้า:
 ${name}
@@ -421,17 +428,11 @@ ${name}
 📞 เบอร์โทร:
 ${phone}
 
-🕯️ กลิ่น:
-${product.name}
+📦 สินค้า:
+${productMessage}
 
-💰 ราคาต่อชิ้น:
-${product.price} บาท
-
-🔢 จำนวน:
-${quantity} ชิ้น
-
-💵 รวม:
-${total} บาท
+💰 รวมทั้งหมด:
+${grandTotal.toLocaleString("th-TH")} บาท
 
 📍 ที่อยู่จัดส่ง:
 ${address}
@@ -439,79 +440,83 @@ ${address}
 📝 หมายเหตุ:
 ${note || "-"}
 
-          `;
+        `;
 
 
-          try {
+        try {
 
-            const response =
-              await fetch(
-                "/api/telegram",
-                {
-                  method: "POST",
+          const response =
+            await fetch(
+              "/api/telegram",
+              {
+                method: "POST",
 
-                  headers: {
-                    "Content-Type":
-                      "application/json"
-                  },
+                headers: {
+                  "Content-Type":
+                    "application/json"
+                },
 
-                  body: JSON.stringify({
-                    message: message
+                body:
+                  JSON.stringify({
+                    message:
+                      message
                   })
-                }
-              );
-
-
-            const data =
-              await response.json();
-
-
-            if (
-              !response.ok ||
-              !data.ok
-            ) {
-
-              throw new Error(
-                data.error ||
-                "ส่ง Telegram ไม่สำเร็จ"
-              );
-
-            }
-
-
-            alert(
-              "สั่งซื้อสำเร็จ! 🕯️\nทางร้านได้รับคำสั่งซื้อแล้ว"
+              }
             );
 
 
-            form.reset();
+          const data =
+            await response.json();
 
 
-            summary.innerHTML =
-              "ยังไม่ได้เลือกสินค้า";
+          if (
+            !response.ok ||
+            !data.ok
+          ) {
 
-
-          } catch (error) {
-
-            console.error(error);
-
-            alert(
-              "ส่งคำสั่งซื้อไม่สำเร็จ กรุณาลองใหม่"
+            throw new Error(
+              data.error ||
+              "ส่ง Telegram ไม่สำเร็จ"
             );
 
           }
 
+
+          /* =========================
+             CLEAR CART
+          ========================== */
+
+          localStorage.removeItem(
+            "lumi_cart"
+          );
+
+
+          alert(
+            "สั่งซื้อสำเร็จ! ทางร้านได้รับคำสั่งซื้อแล้ว 🕯️"
+          );
+
+
+          window.location.href =
+            "thankyou.html";
+
+
+        } catch (error) {
+
+          console.error(error);
+
+          alert(
+            "ส่งคำสั่งซื้อไม่สำเร็จ กรุณาลองใหม่"
+          );
+
         }
-      );
 
+      }
+    );
 
-    /* =========================
-       START
-    ========================= */
+});
 
-    loadProducts();
-
-  </script>
+</script>
 
 </body>
 </html>
+    
