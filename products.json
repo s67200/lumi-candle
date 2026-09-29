@@ -5,7 +5,7 @@
     "mood": "Citrus Day",
     "type": "Soy Candle",
     "size": "100g",
-    "price": 159,
+    "price": 259,
     "desc": "ส้ม เลมอน และเกรปฟรุต สดชื่นเหมือนเปิดหน้าต่างรับแดดยามเช้า",
     "image": "citrus.jpg",
     "color": "#FFD86B"
@@ -16,7 +16,7 @@
     "mood": "Vanilla Cloud",
     "type": "Soy Candle",
     "size": "100g",
-    "price": 159,
+    "price": 259,
     "desc": "วานิลลา มะพร้าว และมัสก์ หอมหวานนุ่มละมุน",
     "image": "vanilla.jpg",
     "color": "#F3E2C3"
@@ -27,7 +27,7 @@
     "mood": "Rose Bloom",
     "type": "Soy Candle",
     "size": "100g",
-    "price": 159,
+    "price": 279,
     "desc": "กุหลาบ พีโอนี และไวท์มัสก์ ให้บรรยากาศหวานละมุน",
     "image": "rose.jpg",
     "color": "#F4A6B8"
@@ -38,7 +38,7 @@
     "mood": "Lavender Calm",
     "type": "Soy Candle",
     "size": "100g",
-    "price": 159,
+    "price": 279,
     "desc": "ลาเวนเดอร์ คาโมมายล์ และซีดาร์วูด เหมาะสำหรับช่วงเวลาพักผ่อน",
     "image": "lavender.jpg",
     "color": "#B9A1E8"
@@ -49,7 +49,7 @@
     "mood": "Ocean Breeze",
     "type": "Soy Candle",
     "size": "100g",
-    "price": 159,
+    "price": 279,
     "desc": "กลิ่นทะเล เกลือทะเล และดอกมะลิ ให้ความรู้สึกสดชื่นเหมือนอยู่ริมทะเล",
     "image": "ocean.jpg",
     "color": "#91D8EA"
@@ -60,7 +60,7 @@
     "mood": "Forest Dream",
     "type": "Soy Candle",
     "size": "100g",
-    "price": 159,
+    "price": 329,
     "desc": "สน ยูคาลิปตัส และแซนดัลวูด ให้ความรู้สึกสงบและใกล้ชิดธรรมชาติ",
     "image": "forest.jpg",
     "color": "#91B98A"
@@ -71,7 +71,7 @@
     "mood": "Coffee Focus",
     "type": "Soy Candle",
     "size": "100g",
-    "price": 159,
+    "price": 329,
     "desc": "กาแฟคั่วหอมอบอุ่น เหมาะกับโต๊ะอ่านหนังสือและ work zone",
     "image": "",
     "color": "#B9825B"
@@ -82,7 +82,7 @@
     "mood": "Rose Date",
     "type": "Soy Candle",
     "size": "100g",
-    "price": 159,
+    "price": 279,
     "desc": "กลิ่นกุหลาบหวานนุ่ม ให้บรรยากาศอบอุ่นและโรแมนติก",
     "image": "",
     "color": "#D97891"
@@ -93,7 +93,7 @@
     "mood": "Peach Glow",
     "type": "Soy Candle",
     "size": "100g",
-    "price": 159,
+    "price": 259,
     "desc": "พีชหวานฉ่ำ ผสมกลิ่นผลไม้สดใส ให้ความรู้สึกสดชื่นและน่ารัก",
     "image": "",
     "color": "#F6B28B"
@@ -104,7 +104,7 @@
     "mood": "Sakura Dream",
     "type": "Soy Candle",
     "size": "100g",
-    "price": 159,
+    "price": 259,
     "desc": "ซากุระและดอกไม้สีขาว หอมละมุน ให้บรรยากาศอ่อนโยน",
     "image": "",
     "color": "#F3B6C7"
@@ -115,7 +115,7 @@
     "mood": "Matcha Garden",
     "type": "Soy Candle",
     "size": "100g",
-    "price": 159,
+    "price": 279,
     "desc": "มัทฉะ ใบชา และกลิ่นไม้บาง ๆ ให้ความรู้สึกสงบและสดชื่น",
     "image": "",
     "color": "#A8C98C"
