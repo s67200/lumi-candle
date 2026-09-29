@@ -23,6 +23,64 @@
   </div>
 </main>
 <footer><span>© 2026 LUMI.</span><span>Scent your moment.</span></footer>
+
 <script src="script.js"></script>
+
+<script>
+document.getElementById("orderForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const formData = new FormData(form);
+
+  const name = formData.get("name");
+  const phone = formData.get("phone");
+  const address = formData.get("address");
+  const product = formData.get("product");
+  const quantity = formData.get("quantity");
+  const note = formData.get("note");
+
+  const message = `
+🕯️ มีคำสั่งซื้อใหม่จาก LUMI
+
+👤 ชื่อลูกค้า: ${name}
+📞 เบอร์โทร: ${phone}
+📦 สินค้า: ${product}
+🔢 จำนวน: ${quantity}
+
+📍 ที่อยู่จัดส่ง:
+${address}
+
+📝 หมายเหตุ:
+${note || "-"}
+`;
+
+  try {
+    const response = await fetch("/api/telegram", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        message: message
+      })
+    });
+
+    const data = await response.json();
+
+    if (!response.ok || !data.ok) {
+      throw new Error(data.error || "ส่ง Telegram ไม่สำเร็จ");
+    }
+
+    alert("สั่งซื้อสำเร็จ! ทางร้านได้รับคำสั่งซื้อแล้ว 🕯️");
+    form.reset();
+
+  } catch (error) {
+    console.error(error);
+    alert("ส่งคำสั่งซื้อไม่สำเร็จ กรุณาลองใหม่");
+  }
+});
+</script>
+
 </body>
 </html>
