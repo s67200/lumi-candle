@@ -1,31 +1,195 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Products — LUMI</title><link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Products — LUMI</title>
+
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<header class="nav"><a class="logo" href="index.html">LUMI<span>.</span></a><nav><a href="index.html">หน้าแรก</a><a class="active" href="product.html">สินค้า</a><a href="order.html">สั่งซื้อ</a><a href="pos.html">POS</a></nav><a class="nav-btn" href="order.html">ตะกร้า / สั่งซื้อ →</a></header>
-<main class="products-page">
-  <section class="page-head"><p class="eyebrow">THE COLLECTION</p><h1>เลือกกลิ่นที่ใช่<br><em>สำหรับวันนี้</em></h1><p>4 กลิ่น · 10 รายการ</p></section>
-  <div class="filters">
-   <div class="filters">
-  <button class="filter active" data-filter="all">ทั้งหมด</button>
-  <button class="filter" data-filter="Citrus Day">Citrus Day</button>
-  <button class="filter" data-filter="Vanilla Cloud">Vanilla Cloud</button>
-  <button class="filter" data-filter="Rose Bloom">Rose Bloom</button>
-  <button class="filter" data-filter="Lavender Calm">Lavender Calm</button>
-  <button class="filter" data-filter="Ocean Breeze">Ocean Breeze</button>
-  <button class="filter" data-filter="Forest Dream">Forest Dream</button>
-  <button class="filter" data-filter="Coffee Focus">Coffee Focus</button>
-  <button class="filter" data-filter="Peach Glow">Peach Glow</button>
-  <button class="filter" data-filter="Berry Kiss">Berry Kiss</button>
-  <button class="filter" data-filter="Fresh Linen">Fresh Linen</button>
-  <button class="filter" data-filter="Sweet Apple">Sweet Apple</button>
-</div>
-  <section id="productGrid" class="product-grid"></section>
-</main>
-<footer><span>© 2026 LUMI.</span><span>Scent your moment.</span></footer>
-<script src="script.js"></script>
+
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
+
+  <header class="nav">
+
+    <a class="logo" href="index.html">
+      LUMI<span>.</span>
+    </a>
+
+    <nav>
+      <a href="index.html">หน้าแรก</a>
+      <a href="product.html">สินค้า</a>
+      <a href="order.html">สั่งซื้อ</a>
+      <a href="pos.html">POS</a>
+    </nav>
+
+  </header>
+
+
+  <!-- =========================
+       PRODUCTS
+  ========================== -->
+
+  <main class="products-page">
+
+    <section class="page-head">
+
+      <p class="eyebrow">
+        THE COLLECTION
+      </p>
+
+      <h1>
+        เลือกกลิ่นที่ใช่
+      </h1>
+
+      <p>
+        ค้นหากลิ่นเทียนหอมที่เหมาะกับอารมณ์และช่วงเวลาของคุณ
+      </p>
+
+    </section>
+
+
+    <!-- =========================
+         SEARCH
+    ========================== -->
+
+    <div class="search-box">
+
+      <input
+        type="text"
+        id="searchInput"
+        class="search-input"
+        placeholder="ค้นหากลิ่นที่ต้องการ..."
+      >
+
+    </div>
+
+
+    <!-- =========================
+         FILTERS
+    ========================== -->
+
+    <div class="filters">
+
+      <button
+        class="filter active"
+        data-filter="all">
+        ทั้งหมด
+      </button>
+
+      <button
+        class="filter"
+        data-filter="Citrus Day">
+        Citrus Day
+      </button>
+
+      <button
+        class="filter"
+        data-filter="Vanilla Cloud">
+        Vanilla Cloud
+      </button>
+
+      <button
+        class="filter"
+        data-filter="Rose Bloom">
+        Rose Bloom
+      </button>
+
+      <button
+        class="filter"
+        data-filter="Lavender Calm">
+        Lavender Calm
+      </button>
+
+      <button
+        class="filter"
+        data-filter="Ocean Breeze">
+        Ocean Breeze
+      </button>
+
+      <button
+        class="filter"
+        data-filter="Forest Dream">
+        Forest Dream
+      </button>
+
+      <button
+        class="filter"
+        data-filter="Coffee Focus">
+        Coffee Focus
+      </button>
+
+      <button
+        class="filter"
+        data-filter="Peach Glow">
+        Peach Glow
+      </button>
+
+      <button
+        class="filter"
+        data-filter="Berry Kiss">
+        Berry Kiss
+      </button>
+
+      <button
+        class="filter"
+        data-filter="Fresh Linen">
+        Fresh Linen
+      </button>
+
+      <button
+        class="filter"
+        data-filter="Sweet Apple">
+        Sweet Apple
+      </button>
+
+    </div>
+
+
+    <!-- =========================
+         PRODUCT GRID
+    ========================== -->
+
+    <section
+      id="productGrid"
+      class="product-grid">
+
+      <!-- สินค้าจะถูกสร้างโดย script.js -->
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <span>
+      © 2026 LUMI.
+    </span>
+
+    <span>
+      Scent your moment.
+    </span>
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script src="script.js"></script>
+
 </body>
+
 </html>
