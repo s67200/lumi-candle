@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Cart — LUMI</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <header class="nav">
+
+    <a class="logo" href="index.html">
+      LUMI<span>.</span>
+    </a>
+
+    <nav>
+      <a href="index.html">หน้าแรก</a>
+      <a href="product.html">สินค้า</a>
+      <a class="active" href="cart.html">
+        ตะกร้า
+        <span class="cart-count">0</span>
+      </a>
+      <a href="order.html">สั่งซื้อ</a>
+      <a href="pos.html">POS</a>
+    </nav>
+
+  </header>
+
+
+  <!-- CART -->
+
+  <main class="order-page">
+
+    <section class="page-head compact">
+
+      <p class="eyebrow">
+        YOUR CART
+      </p>
+
+      <h1>
+        ตะกร้าของคุณ
+      </h1>
+
+      <p>
+        ตรวจสอบสินค้าและจำนวนก่อนดำเนินการสั่งซื้อ
+      </p>
+
+    </section>
+
+
+    <div class="order-layout">
+
+      <!-- CART ITEMS -->
+
+      <section class="form-card">
+
+        <div id="cartItems">
+          กำลังโหลดตะกร้า...
+        </div>
+
+      </section>
+
+
+      <!-- SUMMARY -->
+
+      <aside class="order-summary">
+
+        <p class="eyebrow">
+          ORDER SUMMARY
+        </p>
+
+        <div id="cartSummary">
+          ยังไม่มีสินค้า
+        </div>
+
+        <br>
+
+        <a
+          href="product.html"
+          class="btn full"
+          style="display:block;text-align:center;"
+        >
+          ← เลือกสินค้าเพิ่ม
+        </a>
+
+        <br>
+
+        <a
+          href="order.html"
+          id="checkoutButton"
+          class="btn dark full"
+          style="display:block;text-align:center;"
+        >
+          ไปสั่งซื้อ →
+        </a>
+
+      </aside>
+
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <span>
+      © 2026 LUMI.
+    </span>
+
+    <span>
+      Scent your moment.
+    </span>
+
+  </footer>
+
+
+  <!-- CART SCRIPT -->
+
+  <script>
+
+    let CART =
+      JSON.parse(
+        localStorage.getItem("lumi_cart") || "[]"
+      );
+
+
+    const cartItems =
+      document.getElementById("cartItems");
+
+    const cartSummary =
+      document.getElementById("cartSummary");
+
+    const checkoutButton =
+      document.getElementById("checkoutButton");
+
+
+    /* =========================
+       MONEY
+    ========================= */
+
+    function money(number) {
+
+      return new Intl.NumberFormat(
+        "th-TH",
+        {
+          style: "currency",
+          currency: "THB"
+        }
+      ).format(number);
+
+    }
+
+
+    /* =========================
+       SAVE CART
+    ========================= */
+
+    function saveCart() {
+
+      localStorage.setItem(
+        "lumi_cart",
+        JSON.stringify(CART)
+      );
+
+    }
+
+
+    /* =========================
+       UPDATE CART COUNT
+    ========================= */
+
+    function updateCartCount() {
+
+      const count =
+        CART.reduce(
+          (total, item) =>
+            total + Number(item.quantity || 0),
+          0
+        );
+
+
+      document
+        .querySelectorAll(".cart-count")
+        .forEach(element => {
+
+          element.textContent = count;
+
+        });
+
+    }
+
+
+    /* =========================
+       RENDER CART
+    ========================= */
+
+    function renderCart() {
+
+      updateCartCount();
+
+
+      if (CART.length === 0) {
+
+        cartItems.innerHTML = `
+
+          <div style="
+            text-align:center;
+            padding:40px 20px;
+          ">
+
+            <div style="
+              font-size:48px;
+              margin-bottom:15px;
+            ">
+              🕯️
+            </div>
+
+            <h2>
+              ยังไม่มีสินค้าในตะกร้า
+            </h2>
+
+            <p>
+              เลือกกลิ่นที่ชอบแล้วเพิ่มลงตะกร้าได้เลย
+            </p>
+
+          </div>
+
+        `;
+
+
+        cartSummary.innerHTML = `
+          <strong>
+            ยอดรวม ฿0
+          </strong>
+        `;
+
+
+        checkoutButton.style.display =
+          "none";
+
+        return;
+
+      }
+
+
+      checkoutButton.style.display =
+        "block";
+
+
+      cartItems.innerHTML =
+        CART.map(
+          (item, index) => `
+
+            <div
+              class="cart-item"
+              style="
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+                gap:20px;
+                padding:20px 0;
+                border-bottom:1px solid #eee;
+              "
+            >
+
+              <div style="flex:1;">
+
+                <div class="eyebrow">
+                  LUMI CANDLE
+                </div>
+
+                <h3>
+                  ${item.name}
+                </h3>
+
+                <p>
+                  ${money(item.price)} / ชิ้น
+                </p>
+
+              </div>
+
+
+              <div style="
+                display:flex;
+                align-items:center;
+                gap:10px;
+              ">
+
+                <button
+                  type="button"
+                  onclick="decreaseItem(${index})"
+                  style="
+                    width:32px;
+                    height:32px;
+                    border:1px solid #ddd;
+                    background:white;
+                    border-radius:50%;
+                    cursor:pointer;
+                  "
+                >
+                  −
+                </button>
+
+
+                <strong>
+                  ${item.quantity}
+                </strong>
+
+
+                <button
+                  type="button"
+                  onclick="increaseItem(${index})"
+                  style="
+                    width:32px;
+                    height:32px;
+                    border:1px solid #ddd;
+                    background:white;
+                    border-radius:50%;
+                    cursor:pointer;
+                  "
+                >
+                  +
+                </button>
+
+              </div>
+
+
+              <div style="
+                min-width:90px;
+                text-align:right;
+              ">
+
+                <strong>
+                  ${money(
+                    item.price *
+                    item.quantity
+                  )}
+                </strong>
+
+                <br>
+
+                <button
+                  type="button"
+                  onclick="removeItem(${index})"
+                  style="
+                    margin-top:8px;
+                    border:none;
+                    background:none;
+                    color:#a55;
+                    cursor:pointer;
+                  "
+                >
+                  ลบ
+                </button>
+
+              </div>
+
+            </div>
+
+          `
+        )
+        .join("");
+
+
+      updateSummary();
+
+    }
+
+
+    /* =========================
+       INCREASE
+    ========================= */
+
+    function increaseItem(index) {
+
+      CART[index].quantity += 1;
+
+      saveCart();
+
+      renderCart();
+
+    }
+
+
+    /* =========================
+       DECREASE
+    ========================= */
+
+    function decreaseItem(index) {
+
+      if (CART[index].quantity > 1) {
+
+        CART[index].quantity -= 1;
+
+      } else {
+
+        CART.splice(index, 1);
+
+      }
+
+      saveCart();
+
+      renderCart();
+
+    }
+
+
+    /* =========================
+       REMOVE
+    ========================= */
+
+    function removeItem(index) {
+
+      CART.splice(index, 1);
+
+      saveCart();
+
+      renderCart();
+
+    }
+
+
+    /* =========================
+       SUMMARY
+    ========================= */
+
+    function updateSummary() {
+
+      const total =
+        CART.reduce(
+          (sum, item) =>
+            sum +
+            (
+              Number(item.price) *
+              Number(item.quantity)
+            ),
+          0
+        );
+
+
+      const quantity =
+        CART.reduce(
+          (sum, item) =>
+            sum +
+            Number(item.quantity),
+          0
+        );
+
+
+      cartSummary.innerHTML = `
+
+        <p>
+          จำนวนสินค้า
+          <strong>
+            ${quantity} ชิ้น
+          </strong>
+        </p>
+
+        <p style="
+          font-size:20px;
+          margin-top:15px;
+        ">
+
+          ยอดรวม
+
+          <strong>
+            ${money(total)}
+          </strong>
+
+        </p>
+
+      `;
+
+    }
+
+
+    /* =========================
+       START
+    ========================= */
+
+    renderCart();
+
+  </script>
+
+</body>
+
+</html>
