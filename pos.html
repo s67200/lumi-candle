@@ -25,7 +25,21 @@
 let products=[];let stock=JSON.parse(localStorage.getItem('lumiStock')||'null');let sales=JSON.parse(localStorage.getItem('lumiSales')||'[]');
 const $=id=>document.getElementById(id);const money=n=>new Intl.NumberFormat('th-TH').format(n)+' บาท';
 function notify(t){$('notice').textContent=t;$('notice').style.display='block';setTimeout(()=>$('notice').style.display='none',2500)}
-async function init(){products=await (await fetch('products.json')).json();if(!stock){stock={};products.forEach(p=>stock[p.id]=20);save()}render()}
+async function init(){
+  products = await (await fetch('products.json')).json();
+
+  const oldStock = stock || {};
+  stock = {};
+
+  products.forEach(p => {
+    stock[p.id] = Number.isFinite(Number(oldStock[p.id]))
+      ? Number(oldStock[p.id])
+      : 20;
+  });
+
+  save();
+  render();
+}
 function save(){localStorage.setItem('lumiStock',JSON.stringify(stock));localStorage.setItem('lumiSales',JSON.stringify(sales))}
 function render(){
  const select=$('product');select.innerHTML=products.map(p=>`<option value="${p.id}" ${stock[p.id]===0?'disabled':''}>${p.name} — คงเหลือ ${stock[p.id]} ชิ้น</option>`).join('');
