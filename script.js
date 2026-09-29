@@ -5,23 +5,28 @@ const money = (n) =>
   new Intl.NumberFormat("th-TH", {
     style: "currency",
     currency: "THB"
-  }).format(n);
+  }).format(Number(n) || 0);
+
+
+/* =========================
+   LOAD PRODUCTS
+========================= */
 
 async function loadProducts() {
   try {
     const response = await fetch("products.json");
 
     if (!response.ok) {
-      throw new Error("ไม่สามารถโหลด products.json ได้");
+      throw new Error("โหลด products.json ไม่สำเร็จ");
     }
 
     PRODUCTS = await response.json();
 
-    renderProducts();
+    renderProducts(PRODUCTS);
     updateCartCount();
 
   } catch (error) {
-    console.error(error);
+    console.error("Product error:", error);
   }
 }
 
@@ -32,37 +37,59 @@ async function loadProducts() {
 
 function card(p) {
 
-  const imageHTML = p.image
-    ? `<img src="${p.image}" alt="${p.name}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">`
-    : "";
-
-  const fallbackHTML = `
-    <div
-      class="mini-candle"
-      style="background:${p.color || "#eee"}"
-    >
-      ${p.mood}
-    </div>
-  `;
+  const hasImage =
+    p.image && p.image.trim() !== "";
 
   return `
     <article class="product-card" data-mood="${p.mood}">
 
-      <div class="product-visual">
+      <div
+        class="product-visual"
+        style="background:${p.color || "#f5f1ed"}"
+      >
 
-        ${imageHTML}
+        ${
+          hasImage
+            ? `
+              <img
+                src="${p.image}"
+                alt="${p.name}"
+                style="
+                  width:100%;
+                  height:100%;
+                  object-fit:cover;
+                  display:block;
+                "
+                onerror="
+                  this.style.display='none';
+                  this.nextElementSibling.style.display='flex';
+                "
+              >
+            `
+            : ""
+        }
 
         <div
           class="image-fallback"
           style="
-            background:${p.color || "#eee"};
-            ${p.image ? "display:none;" : "display:flex;"}
+            display:${hasImage ? "none" : "flex"};
+            width:100%;
+            height:100%;
+            align-items:center;
+            justify-content:center;
+            text-align:center;
+            padding:20px;
+            box-sizing:border-box;
           "
         >
-          ${fallbackHTML}
+          <div class="mini-candle">
+            🕯️<br>
+            ${p.mood}
+          </div>
         </div>
 
       </div>
+
 
       <div class="product-info">
 
@@ -85,6 +112,7 @@ function card(p) {
           </span>
 
           <button
+            type="button"
             class="add"
             data-id="${p.id}"
           >
@@ -104,7 +132,7 @@ function card(p) {
    RENDER PRODUCTS
 ========================= */
 
-function renderProducts() {
+function renderProducts(products) {
 
   const container =
     document.querySelector("#productGrid") ||
@@ -117,21 +145,32 @@ function renderProducts() {
   }
 
   container.innerHTML =
-    PRODUCTS.map(card).join("");
+    products.map(card).join("");
 
-  document
-    .querySelectorAll(".add")
-    .forEach(button => {
+  attachCartButtons();
+}
 
-      button.addEventListener("click", () => {
 
-        const id = button.dataset.id;
+/* =========================
+   CART BUTTONS
+========================= */
 
-        addToCart(id);
+function attachCartButtons() {
 
-      });
+  const buttons =
+    document.querySelectorAll(".add");
+
+  buttons.forEach(button => {
+
+    button.addEventListener("click", function () {
+
+      const id = this.dataset.id;
+
+      addToCart(id);
 
     });
+
+  });
 }
 
 
@@ -142,9 +181,12 @@ function renderProducts() {
 function addToCart(id) {
 
   const product =
-    PRODUCTS.find(p => p.id === id);
+    PRODUCTS.find(product => product.id === id);
 
-  if (!product) return;
+  if (!product) {
+    console.error("ไม่พบสินค้า:", id);
+    return;
+  }
 
   const existing =
     CART.find(item => item.id === id);
@@ -158,7 +200,7 @@ function addToCart(id) {
     CART.push({
       id: product.id,
       name: product.name,
-      price: product.price,
+      price: Number(product.price),
       quantity: 1
     });
 
@@ -168,7 +210,9 @@ function addToCart(id) {
 
   updateCartCount();
 
-  alert(`${product.name} เพิ่มลงตะกร้าแล้ว 🕯️`);
+  alert(
+    `เพิ่ม ${product.name} ลงตะกร้าแล้ว 🕯️`
+  );
 }
 
 
@@ -195,7 +239,7 @@ function updateCartCount() {
   const count =
     CART.reduce(
       (total, item) =>
-        total + item.quantity,
+        total + Number(item.quantity || 0),
       0
     );
 
@@ -204,12 +248,11 @@ function updateCartCount() {
       "[data-cart-count], .cart-count"
     );
 
-  elements.forEach(el => {
+  elements.forEach(element => {
 
-    el.textContent = count;
+    element.textContent = count;
 
   });
-
 }
 
 
@@ -228,80 +271,59 @@ function setupSearch() {
 
   input.addEventListener(
     "input",
-    () => {
+    function () {
 
       const keyword =
-        input.value
+        this.value
           .toLowerCase()
           .trim();
 
+      if (!keyword) {
+
+        renderProducts(PRODUCTS);
+
+        return;
+      }
+
       const filtered =
-        PRODUCTS.filter(product =>
+        PRODUCTS.filter(product => {
 
-          product.name
-            .toLowerCase()
-            .includes(keyword)
+          return (
 
-          ||
+            product.name
+              .toLowerCase()
+              .includes(keyword)
 
-          product.mood
-            .toLowerCase()
-            .includes(keyword)
+            ||
 
-          ||
+            product.mood
+              .toLowerCase()
+              .includes(keyword)
 
-          product.desc
-            .toLowerCase()
-            .includes(keyword)
+            ||
 
-        );
+            product.desc
+              .toLowerCase()
+              .includes(keyword)
 
-      const container =
-        document.querySelector(
-          "#productGrid"
-        ) ||
-        document.querySelector(
-          ".product-grid"
-        ) ||
-        document.querySelector(
-          "#products"
-        );
-
-      if (!container) return;
-
-      container.innerHTML =
-        filtered.map(card).join("");
-
-      document
-        .querySelectorAll(".add")
-        .forEach(button => {
-
-          button.addEventListener(
-            "click",
-            () => {
-
-              addToCart(
-                button.dataset.id
-              );
-
-            }
           );
 
         });
 
+      renderProducts(filtered);
+
     }
   );
-
 }
 
 
 /* =========================
-   START
+   START WEBSITE
 ========================= */
 
 document.addEventListener(
   "DOMContentLoaded",
-  () => {
+  function () {
 
     loadProducts();
 
