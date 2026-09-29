@@ -1,86 +1,513 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Order — LUMI</title><link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Order — LUMI</title>
+
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-<header class="nav"><a class="logo" href="index.html">LUMI<span>.</span></a><nav><a href="index.html">หน้าแรก</a><a href="product.html">สินค้า</a><a class="active" href="order.html">สั่งซื้อ</a><a href="pos.html">POS</a></nav></header>
-<main class="order-page">
-  <section class="page-head compact"><p class="eyebrow">ORDER FORM</p><h1>สั่งซื้อ LUMI</h1><p>กรอกข้อมูลให้ครบ แล้วกดส่งคำสั่งซื้อ</p></section>
-  <div class="order-layout">
-    <form id="orderForm" class="form-card">
-      <label>ชื่อ-นามสกุล<input required name="name" placeholder="ชื่อของคุณ"></label>
-      <label>เบอร์โทรศัพท์<input required name="phone" type="tel" placeholder="08x-xxx-xxxx"></label>
-      <label>ที่อยู่จัดส่ง<textarea required name="address" rows="4" placeholder="บ้านเลขที่ ถนน แขวง/ตำบล เขต/อำเภอ จังหวัด รหัสไปรษณีย์"></textarea></label>
-      <label>สินค้า<select required id="productSelect" name="product"></select></label>
-      <label>จำนวน<input required name="quantity" type="number" min="1" value="1"></label>
-      <label>หมายเหตุ<textarea name="note" rows="3" placeholder="เช่น ฝากไว้หน้าบ้าน"></textarea></label>
-      <button class="btn dark full" type="submit">ยืนยันคำสั่งซื้อ →</button>
-      <p class="form-note">* เดโมนี้บันทึกคำสั่งซื้อไว้ในเครื่องก่อน หากต้องการต่อ Google Sheet ให้ใส่ Apps Script URL ใน script.js</p>
-    </form>
-    <aside class="order-summary"><p class="eyebrow">YOUR ORDER</p><div id="summary">ยังไม่ได้เลือกสินค้า</div></aside>
-  </div>
-</main>
-<footer><span>© 2026 LUMI.</span><span>Scent your moment.</span></footer>
 
-<script src="script.js"></script>
+  <!-- NAV -->
+  <header class="nav">
 
-<script>
-document.getElementById("orderForm").addEventListener("submit", async function(e) {
-  e.preventDefault();
+    <a class="logo" href="index.html">
+      LUMI<span>.</span>
+    </a>
 
-  const form = e.target;
-  const formData = new FormData(form);
+    <nav>
+      <a href="index.html">หน้าแรก</a>
+      <a href="product.html">สินค้า</a>
+      <a class="active" href="order.html">สั่งซื้อ</a>
+      <a href="pos.html">POS</a>
+    </nav>
 
-  const name = formData.get("name");
-  const phone = formData.get("phone");
-  const address = formData.get("address");
-  const product = formData.get("product");
-  const quantity = formData.get("quantity");
-  const note = formData.get("note");
+  </header>
 
-  const message = `
-🕯️ มีคำสั่งซื้อใหม่จาก LUMI
 
-👤 ชื่อลูกค้า: ${name}
-📞 เบอร์โทร: ${phone}
-📦 สินค้า: ${product}
-🔢 จำนวน: ${quantity}
+  <!-- ORDER -->
+  <main class="order-page">
+
+    <section class="page-head compact">
+
+      <p class="eyebrow">
+        ORDER FORM
+      </p>
+
+      <h1>
+        สั่งซื้อ LUMI
+      </h1>
+
+      <p>
+        เลือกกลิ่นที่ต้องการ แล้วกรอกข้อมูลสำหรับจัดส่ง
+      </p>
+
+    </section>
+
+
+    <div class="order-layout">
+
+      <!-- FORM -->
+
+      <form id="orderForm" class="form-card">
+
+        <label>
+          ชื่อ-นามสกุล
+
+          <input
+            required
+            name="name"
+            placeholder="ชื่อของคุณ"
+          >
+
+        </label>
+
+
+        <label>
+          เบอร์โทรศัพท์
+
+          <input
+            required
+            name="phone"
+            type="tel"
+            placeholder="08x-xxx-xxxx"
+          >
+
+        </label>
+
+
+        <label>
+          ที่อยู่จัดส่ง
+
+          <textarea
+            required
+            name="address"
+            rows="4"
+            placeholder="บ้านเลขที่ ถนน แขวง/ตำบล เขต/อำเภอ จังหวัด รหัสไปรษณีย์"
+          ></textarea>
+
+        </label>
+
+
+        <!-- PRODUCT -->
+
+        <label>
+          สินค้า
+
+          <select
+            required
+            id="productSelect"
+            name="product"
+          >
+
+            <option value="">
+              กำลังโหลดสินค้า...
+            </option>
+
+          </select>
+
+        </label>
+
+
+        <!-- QUANTITY -->
+
+        <label>
+          จำนวน
+
+          <input
+            required
+            name="quantity"
+            type="number"
+            min="1"
+            value="1"
+          >
+
+        </label>
+
+
+        <!-- NOTE -->
+
+        <label>
+          หมายเหตุ
+
+          <textarea
+            name="note"
+            rows="3"
+            placeholder="เช่น ฝากไว้หน้าบ้าน"
+          ></textarea>
+
+        </label>
+
+
+        <button
+          class="btn dark full"
+          type="submit"
+        >
+          ยืนยันคำสั่งซื้อ →
+        </button>
+
+
+        <p class="form-note">
+          * เมื่อกดยืนยัน ร้านจะได้รับข้อมูลคำสั่งซื้อผ่าน Telegram
+        </p>
+
+      </form>
+
+
+      <!-- SUMMARY -->
+
+      <aside class="order-summary">
+
+        <p class="eyebrow">
+          YOUR ORDER
+        </p>
+
+        <div id="summary">
+          ยังไม่ได้เลือกสินค้า
+        </div>
+
+      </aside>
+
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <span>
+      © 2026 LUMI.
+    </span>
+
+    <span>
+      Scent your moment.
+    </span>
+
+  </footer>
+
+
+  <!-- =========================
+       ORDER SCRIPT
+  ========================== -->
+
+  <script>
+
+    let PRODUCTS = [];
+
+    const productSelect =
+      document.getElementById("productSelect");
+
+    const summary =
+      document.getElementById("summary");
+
+    const quantityInput =
+      document.querySelector('[name="quantity"]');
+
+
+    /* =========================
+       LOAD PRODUCTS
+    ========================= */
+
+    async function loadProducts() {
+
+      try {
+
+        const response =
+          await fetch("products.json");
+
+        if (!response.ok) {
+          throw new Error("โหลด products.json ไม่สำเร็จ");
+        }
+
+        PRODUCTS =
+          await response.json();
+
+
+        productSelect.innerHTML = `
+          <option value="">
+            -- เลือกกลิ่นที่ต้องการ --
+          </option>
+        `;
+
+
+        PRODUCTS.forEach(product => {
+
+          const option =
+            document.createElement("option");
+
+          option.value =
+            product.id;
+
+          option.textContent =
+            `${product.name} — ${product.price} บาท`;
+
+          productSelect.appendChild(option);
+
+        });
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        productSelect.innerHTML = `
+          <option value="">
+            ไม่สามารถโหลดสินค้าได้
+          </option>
+        `;
+
+        alert(
+          "โหลดรายการสินค้าไม่สำเร็จ กรุณารีเฟรชหน้าเว็บ"
+        );
+
+      }
+
+    }
+
+
+    /* =========================
+       UPDATE SUMMARY
+    ========================= */
+
+    function updateSummary() {
+
+      const selectedID =
+        productSelect.value;
+
+      const quantity =
+        Number(quantityInput.value || 1);
+
+
+      if (!selectedID) {
+
+        summary.innerHTML =
+          "ยังไม่ได้เลือกสินค้า";
+
+        return;
+
+      }
+
+
+      const product =
+        PRODUCTS.find(
+          p => p.id === selectedID
+        );
+
+
+      if (!product) return;
+
+
+      const total =
+        product.price * quantity;
+
+
+      summary.innerHTML = `
+
+        <div class="summary-item">
+
+          <strong>
+            ${product.name}
+          </strong>
+
+          <span>
+            ${product.desc || ""}
+          </span>
+
+          <p>
+            จำนวน ${quantity} ชิ้น
+          </p>
+
+          <strong>
+            รวม ${total.toLocaleString("th-TH")} บาท
+          </strong>
+
+        </div>
+
+      `;
+
+    }
+
+
+    productSelect.addEventListener(
+      "change",
+      updateSummary
+    );
+
+
+    quantityInput.addEventListener(
+      "input",
+      updateSummary
+    );
+
+
+    /* =========================
+       SEND ORDER
+    ========================= */
+
+    document
+      .getElementById("orderForm")
+      .addEventListener(
+        "submit",
+        async function (e) {
+
+          e.preventDefault();
+
+
+          const form =
+            e.target;
+
+          const formData =
+            new FormData(form);
+
+
+          const name =
+            formData.get("name");
+
+          const phone =
+            formData.get("phone");
+
+          const address =
+            formData.get("address");
+
+          const productID =
+            formData.get("product");
+
+          const quantity =
+            formData.get("quantity");
+
+          const note =
+            formData.get("note");
+
+
+          const product =
+            PRODUCTS.find(
+              p => p.id === productID
+            );
+
+
+          if (!product) {
+
+            alert(
+              "กรุณาเลือกสินค้าก่อน"
+            );
+
+            return;
+
+          }
+
+
+          const total =
+            product.price *
+            Number(quantity);
+
+
+          const message = `
+
+🕯️ คำสั่งซื้อใหม่จาก LUMI
+
+👤 ชื่อลูกค้า:
+${name}
+
+📞 เบอร์โทร:
+${phone}
+
+🕯️ กลิ่น:
+${product.name}
+
+💰 ราคาต่อชิ้น:
+${product.price} บาท
+
+🔢 จำนวน:
+${quantity} ชิ้น
+
+💵 รวม:
+${total} บาท
 
 📍 ที่อยู่จัดส่ง:
 ${address}
 
 📝 หมายเหตุ:
 ${note || "-"}
-`;
 
-  try {
-    const response = await fetch("/api/telegram", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        message: message
-      })
-    });
+          `;
 
-    const data = await response.json();
 
-    if (!response.ok || !data.ok) {
-      throw new Error(data.error || "ส่ง Telegram ไม่สำเร็จ");
-    }
+          try {
 
-    alert("สั่งซื้อสำเร็จ! ทางร้านได้รับคำสั่งซื้อแล้ว 🕯️");
-    form.reset();
+            const response =
+              await fetch(
+                "/api/telegram",
+                {
+                  method: "POST",
 
-  } catch (error) {
-    console.error(error);
-    alert("ส่งคำสั่งซื้อไม่สำเร็จ กรุณาลองใหม่");
-  }
-});
-</script>
+                  headers: {
+                    "Content-Type":
+                      "application/json"
+                  },
+
+                  body: JSON.stringify({
+                    message: message
+                  })
+                }
+              );
+
+
+            const data =
+              await response.json();
+
+
+            if (
+              !response.ok ||
+              !data.ok
+            ) {
+
+              throw new Error(
+                data.error ||
+                "ส่ง Telegram ไม่สำเร็จ"
+              );
+
+            }
+
+
+            alert(
+              "สั่งซื้อสำเร็จ! 🕯️\nทางร้านได้รับคำสั่งซื้อแล้ว"
+            );
+
+
+            form.reset();
+
+
+            summary.innerHTML =
+              "ยังไม่ได้เลือกสินค้า";
+
+
+          } catch (error) {
+
+            console.error(error);
+
+            alert(
+              "ส่งคำสั่งซื้อไม่สำเร็จ กรุณาลองใหม่"
+            );
+
+          }
+
+        }
+      );
+
+
+    /* =========================
+       START
+    ========================= */
+
+    loadProducts();
+
+  </script>
 
 </body>
 </html>
